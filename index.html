@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Laba_#1</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="robot.js"></script>
+</head>
+
+<body>
+    <!-- Контейнер отрисовки робота -->
+    <div class="robot_container">
+  
+        <div class="robot_visual">
+
+            <!-- Платформа -->
+            <img src="image/platform.svg" alt="Платформа" class="platform">
+
+            <!-- Колеса -->
+            <img src="image/wheel.svg" alt="Левое колесо" class="wheel_left">
+            <img src="image/wheel.svg" alt="Правое колесо" class="wheel_right">
+            
+            <!-- Стрелки -->
+            <img src="image/arrow.svg" alt="Стрелка направления" class="arrow">
+            <img src="image/arrow_wheel_run.svg" alt="Стрелка левого колеса вперёд" class="arrow_wheel_run_left">
+            <img src="image/arrow_wheel_stop.svg" alt="Стрелка левого колеса назад" class="arrow_wheel_stop_left">
+            <img src="image/arrow_wheel_run.svg" alt="Стрелка правого колеса вперёд" class="arrow_wheel_run_right">
+            <img src="image/arrow_wheel_stop.svg" alt="Стрелка правого колеса назад" class="arrow_wheel_stop_right">
+
+            <!-- Круги (датчики) -->
+            <img src="image/circle.svg" alt="Круг" class="circle1">
+            <img src="image/circle.svg" alt="Круг" class="circle2">
+            <img src="image/circle.svg" alt="Круг" class="circle3">
+            <img src="image/circle.svg" alt="Круг" class="circle4">
+            <img src="image/circle.svg" alt="Круг" class="circle5">
+            <img src="image/circle.svg" alt="Круг" class="circle6">
+            <img src="image/circle.svg" alt="Круг" class="circle7">
+            <img src="image/circle.svg" alt="Круг" class="circle8">
+
+            <!-- Линии (датчики) -->
+            <img src="image/line.svg" alt="Линия" class="line1">
+            <img src="image/line.svg" alt="Линия" class="line2">
+            <img src="image/line.svg" alt="Линия" class="line3">
+            <img src="image/line.svg" alt="Линия" class="line4">
+            <img src="image/line.svg" alt="Линия" class="line5">
+            <img src="image/line.svg" alt="Линия" class="line6">
+            <img src="image/line.svg" alt="Линия" class="line7">
+            <img src="image/line.svg" alt="Линия" class="line8">
+            
+            <!-- Стрела -->
+            <img src="image/strela.svg" alt="Стрела" class="strela">
+
+            <!-- Хват разложен -->
+            <img src="image/hvat_rasloshen.svg" alt="Хват разложен" class="hvat_rasloshen">
+
+            <!-- Хват сложен -->
+            <img src="image/hvat_sloshen.svg" alt="Хват сложен" class="hvat_sloshen">
+
+
+        </div>       
+        
+    </div>
+
+
+    <!-- Панель управления -->
+    <div class="panel_control">
+
+        <!-- Панель управления хватом -->
+        <div class="gripper_panel">
+            <h3>Хват</h3>
+
+            <!-- Кнопка открытие/закрытие -->
+            <div class="gripper_control">
+                <button id="toggle-gripper" class="closed">Закрыт</button>
+            </div>
+
+            <!-- Ползунок расстояния -->
+            <input type="range" id="gripper_range" min="0" max="100" value="0">
+            
+            <!-- Текущее значение -->
+            <div class="value">Текущее положение: <span id="gripper_value">0</span>%</div>
+        </div>
+
+        <!-- Панель управления колёсами -->
+        <div class="wheel_control">
+
+            <h3>Управление колёсами</h3>
+
+            <!-- Левое колесо -->
+            <div class="wheel_left_control">
+                <label>Обороты левого колеса в секунду: </label>
+                <input type="number" class="speed" value="0" min="0" max="5">
+                <select class="direction">
+                    <option value="1">Вперёд</option>
+                    <option value="-1">Назад</option>
+                </select>
+            </div>
+
+            <!-- Правое колесо -->
+            <div class="wheel_right_control">
+                <label>Обороты правого колеса в секунду: </label>
+                <input type="number" class="speed" value="0" min="0" max="5">
+                <select class="direction">
+                    <option value="1">Вперёд</option>
+                    <option value="-1">Назад</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Панель управления растоянием -->
+        <div class="range_sensors">
+
+            <h3>Датчики расстояния</h3>
+
+            <!-- Кнопка слежения за мышкой -->
+            <div class="sensor_tracking_control">
+                <button id="toggle-sensors">Включить слежение за мышкой</button>
+            </div>
+
+            <div class="sensors-grid">
+            <label>Дальномер №1 <input type="number" class="sensor" min="10" max="80" value="10"></label>
+            <label>Дальномер №2 <input type="number" class="sensor" min="10" max="80" value="10"></label>
+            <label>Дальномер №3 <input type="number" class="sensor" min="10" max="80" value="10"></label>
+            <label>Дальномер №4 <input type="number" class="sensor" min="10" max="80" value="10"></label>
+            <label>Дальномер №5 <input type="number" class="sensor" min="10" max="80" value="10"></label>
+            <label>Дальномер №6 <input type="number" class="sensor" min="10" max="80" value="10"></label>
+            <label>Дальномер №7 <input type="number" class="sensor" min="10" max="80" value="10"></label>
+            <label>Дальномер №8 <input type="number" class="sensor" min="10" max="80" value="10"></label>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

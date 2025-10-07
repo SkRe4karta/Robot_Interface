@@ -1,0 +1,457 @@
+/* Сброс отступов и центрирование */
+/* Сброс отступов и центрирование содержимого */
+/* Сброс и фон */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Контейнер всего робота */
+.robot_container {
+    position: absolute; /* Абсолютное позиционирование */
+    width: 1200px; /* Ширина контейнера робота */
+    height: 800px; /* Высота контейнера робота */
+}
+
+/* Платформа робота по центру */
+.robot_container .platform {
+    position: absolute;
+    width: 750px; /* Ширина платформы */
+    height: 750px; /* Высота платформы */
+    top: 50%;            
+    left: 33.3%;        
+    transform: translate(-50%, -50%); /* Центрирование платформы */
+}
+
+/* Левое колесо */
+.robot_container .wheel_left {
+    position: absolute;
+    width: 400px; /* Диаметр колеса */
+    height: 400px;
+    top: 50%; /* Вертикальное центрирование */
+    left: calc(33.33% - 400px); /* Расположение слева от платформы */
+    transform: translateY(-50%); /* Корректировка вертикального центрирования */
+}
+
+/* Правое колесо */
+.robot_container .wheel_right {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: calc(33.33%); /* Расположение справа от платформы */
+    transform: translateY(-50%);
+}
+
+/* Общая направляющая стрелка */
+.robot_container .arrow {
+    position: absolute;
+    z-index: 10;  
+    display: block;        /* Видимая по умолчанию */
+    transform-origin: 50% 50%;
+    width: 200px; /* Размер стрелки */
+    height: 200px;
+    top: 49%; /* Почти центр по вертикали */
+    left: calc(25%); /* Расположение по горизонтали */
+    transform: translateY(-50%) rotate(0deg); /* Вертикальное центрирование */
+}
+
+/* Направляющая стрелка левого колеса вперёд */
+.robot_container .arrow_wheel_run_left {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 49%;
+    left: calc(2.5%); /* Слева от контейнера */
+    transform: translateY(-50%);
+}
+
+/* Направляющая стрелка левого колеса назад */
+.robot_container .arrow_wheel_stop_left {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 49%;
+    left: calc(2.5%);
+    transform: translateY(-50%) rotate(180deg); /* Поворот на 180° для направления назад */
+}
+
+/* Направляющая стрелка правого колеса вперёд */
+.robot_container .arrow_wheel_run_right {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 49%;
+    left: calc(47.5%); /* Справа от платформы */
+    transform: translateY(-50%);
+}
+
+/* Направляющая стрелка правого колеса назад */
+.robot_container .arrow_wheel_stop_right {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 49%;
+    left: calc(47.5%);
+    transform: translateY(-50%) rotate(180deg); /* Поворот на 180° для направления назад */
+}
+
+/* Линии сенсоров */
+.robot_container img[class^="line"] {
+    position: absolute;
+    width: 300px;       /* длина линии */
+    height: 10px;       /* толщина линии */
+    background: #333;
+    top: 50%;       /* центр платформы по вертикали */
+    left: 33.3%;        /* центр платформы по горизонтали */
+    transform-origin: 0 50%; /* начало линии от центра */
+}
+
+/* Кружки-сенсоры (на начале линии, у платформы) */
+.robot_container img[class^="circle"] {
+    position: absolute;
+    width: 300px;        /* размер кружка */
+    height: 100px;
+    top: 44.5%;         /* центр платформы по вертикали */
+    left: 33.3%;        /* центр платформы по горизонтали */
+    transform-origin: 0 50%;
+    z-index: 5;
+}
+
+/* Линии сенсоров с поворотом на 22.5° */
+.line1{ transform: rotate(22.5deg)   translateX(330px) ; }    /* вправо */
+.line2{ transform: rotate(67.5deg)  translateX(330px) ; }   
+.line3{ transform: rotate(112.45deg)  translateX(330px) ; }    /* вниз */
+.line4 { transform: rotate(157.5deg) translateX(330px); }   
+.line5 { transform: rotate(202.5deg) translateX(330px); }    /* влево */
+.line6 { transform: rotate(247.5deg) translateX(330px); }   
+.line7 { transform: rotate(292.5deg) translateX(330px); }    /* вверх */
+.line8 { transform: rotate(337.5deg) translateX(330px); }  
+
+/* Кружки сенсоров с поворотом на 22.5° */
+.circle1 { transform: rotate(22.5deg)   translateX(185px); }    /* вправо */
+.circle2 { transform: rotate(67.5deg)   translateX(185px); }   
+.circle3 { transform: rotate(112.5deg)  translateX(185px); }    /* вниз */
+.circle4 { transform: rotate(157.5deg)  translateX(185px); }   
+.circle5 { transform: rotate(202.5deg)  translateX(185px); }    /* влево */
+.circle6 { transform: rotate(247.5deg)  translateX(185px); }   
+.circle7 { transform: rotate(292.5deg)  translateX(185px); }    /* вверх */
+.circle8 { transform: rotate(337.5deg)  translateX(185px); }  
+
+/* Стрела по центру спереди робота */
+.robot_container .strela {
+    position: absolute;
+    width: 500px;   /* размер стрелы */
+    height: 500px;
+    top: 40%;       /* смещение сверху */
+    left: 33.3%;
+    z-index: 15;    /* выше платформы и колес */
+    transform: translate(-50%, -100%)
+}
+
+/* Хват разложен */
+.robot_container .hvat_rasloshen {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 46%;       /* почти сверху */
+    left: 33.3%;
+    transform: translate(-50%, -100%);
+    z-index: 20;
+    
+}
+
+/* Хват сложен */
+.robot_container .hvat_sloshen {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 46%;       /* почти сверху */
+    left: 33.3%;
+    transform: translate(-50%, -100%);
+    z-index: 20;
+    
+}
+
+
+
+
+
+/* ПАНЕЛЬ УПРАВЛЕНИЯ РОБОТОМ */
+.panel_control {
+    position: absolute; /* Абсолютное позиционирование относительно родителя */
+    top: 50%;           /* Центрирование по вертикали */
+    right: 20px;        /* Отступ от правого края */
+    transform: translateY(-50%); /* Корректировка смещения для точного центрирования */
+    width: 420px;       /* Ширина панели */
+    max-height: 90vh;   /* Ограничение высоты панели по высоте экрана */
+    box-sizing: border-box; /* Включаем padding в ширину */
+    padding: 25px 30px; /* Внутренние отступы */
+    background: linear-gradient(145deg, #fdfdfd, #e8e8e8); /* Фон с градиентом */
+    border-radius: 25px; /* Закругленные углы */
+    border: 2px solid #d6d6d6; /* Рамка */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Тень панели */
+    transition: all 0.3s ease; /* Плавная анимация изменений */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Шрифт */
+}
+
+/* Эффект при наведении на панель */
+.panel_control:hover {
+    transform: translateY(-50%) scale(1.02); /* Немного увеличиваем панель */
+    box-shadow: 0 14px 35px rgba(0,0,0,0.25); /* Усиление тени */
+}
+
+/* Заголовки секций внутри панели */
+.panel_control h3 {
+    margin: 0 0 20px;        /* Отступ снизу */
+    font-size: 20px;         /* Размер шрифта */
+    font-weight: 600;        /* Толщина шрифта */
+    text-align: center;      /* Выравнивание по центру */
+    color: #333;             /* Цвет текста */
+    border-bottom: 2px solid #ccc; /* Нижняя граница */
+    padding-bottom: 8px;     /* Отступ снизу внутри заголовка */
+}
+
+/* Блок управления колесами */
+.wheel_control {
+    margin-bottom: 25px; /* Отступ снизу между секциями */
+}
+
+/* Контейнеры для левого и правого колеса */
+.wheel_left_control, .wheel_right_control {
+    display: flex; /* Горизонтальная раскладка элементов */
+    justify-content: space-between; /* Распределение элементов по краям */
+    align-items: center; /* Вертикальное выравнивание */
+    margin: 10px 0; /* Отступы сверху и снизу */
+    padding: 10px 15px; /* Внутренние отступы */
+    border-radius: 15px; /* Закругленные углы */
+    background: #f5f5f5; /* Цвет фона блока */
+    border: 1px solid #ddd; /* Рамка блока */
+    transition: all 0.2s; /* Плавная анимация при наведении */
+}
+
+/* Эффект наведения на блок колеса */
+.wheel_left_control:hover, .wheel_right_control:hover {
+    background: #eaeaea; /* Изменение фона при hover */
+}
+
+/* Метки внутри блоков колес */
+.wheel_left_control label, .wheel_right_control label {
+    flex: 1;             /* Метка занимает доступное пространство */
+    font-size: 15px;     /* Размер шрифта */
+    color: #444;         /* Цвет текста */
+}
+
+/* Поля ввода и селекты внутри блоков колес */
+.wheel_left_control input, .wheel_right_control input,
+.wheel_left_control select, .wheel_right_control select {
+    margin-left: 12px;   /* Отступ слева от метки */
+    padding: 6px 8px;    /* Внутренние отступы */
+    border-radius: 8px;  /* Закругленные углы */
+    border: 1px solid #ccc; /* Рамка */
+    transition: all 0.2s; /* Плавная анимация изменений */
+}
+
+/* Эффект фокуса на полях ввода и селектах */
+.wheel_left_control input:focus, .wheel_right_control input:focus,
+.wheel_left_control select:focus, .wheel_right_control select:focus {
+    outline: none;              /* Убираем стандартный контур */
+    border-color: #888;         /* Цвет рамки при фокусе */
+    box-shadow: 0 0 6px rgba(0,0,0,0.1); /* Легкая тень */
+}
+
+/* Сетка для датчиков расстояния */
+.sensors-grid {
+    display: grid; /* Сетка */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Адаптивные колонки */
+    gap: 12px; /* Расстояние между ячейками */
+}
+
+/* Каждый датчик в сетке */
+.sensors-grid label {
+    display: flex; /* Горизонтальная раскладка */
+    justify-content: space-between; /* Элементы по краям */
+    align-items: center; /* Вертикальное выравнивание */
+    background: #f5f5f5; /* Цвет фона */
+    padding: 8px 12px; /* Внутренние отступы */
+    border-radius: 12px; /* Закругленные углы */
+    border: 1px solid #ddd; /* Рамка */
+    font-size: 14px; /* Размер шрифта */
+}
+
+/* Эффект наведения на датчик */
+.sensors-grid label:hover {
+    background: #eaeaea; /* Изменение фона при hover */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08); /* Легкая тень */
+}
+
+/* Поля ввода датчиков */
+.sensors-grid input {
+    width: 60px;           /* Ширина поля */
+    padding: 4px 6px;      /* Внутренние отступы */
+    text-align: center;    /* Выравнивание текста по центру */
+    border-radius: 8px;    /* Закругленные углы */
+    border: 1px solid #ccc; /* Рамка */
+    transition: all 0.2s;  /* Плавная анимация */
+}
+
+/* Эффект фокуса на поле датчика */
+.sensors-grid input:focus {
+    outline: none;             /* Убираем стандартный контур */
+    border-color: #888;        /* Цвет рамки при фокусе */
+    box-shadow: 0 0 5px rgba(0,0,0,0.1); /* Легкая тень */
+}
+
+.sensor_tracking_control {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Базовый стиль */
+.sensor_tracking_control button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Включено (по умолчанию зелёная) */
+.sensor_tracking_control button.on {
+    background-color: #4CAF50;
+}
+
+.sensor_tracking_control button.on:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Выключено (красная) */
+.sensor_tracking_control button.off {
+    background-color: #d9534f;
+}
+
+.sensor_tracking_control button.off:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+
+/* Контейнер панели */
+.gripper_panel {
+  padding: 20px 25px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff, #e9e9e9);
+  border: 2px solid #d6d6d6;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.gripper_panel:hover {
+  transform: scale(1.02);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.25);
+}
+
+.gripper_panel h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 6px;
+  color: #222;
+}
+
+/* Кнопка открытие/закрытие */
+.gripper_control button {
+  padding: 10px 22px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+/* Открыт */
+.gripper_control button.open {
+  background-color: #4CAF50;
+}
+.gripper_control button.open:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Закрыт */
+.gripper_control button.closed {
+  background-color: #d9534f;
+}
+.gripper_control button.closed:hover {
+  background-color: #c9302c;
+  transform: scale(1.05);
+}
+
+/* Ползунок расстояния */
+.gripper_panel input[type="range"] {
+  width: 100%;
+  margin: 10px 0;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #4CAF50, #81C784);
+  outline: none;
+  transition: background 0.3s;
+}
+
+/* WebKit */
+.gripper_panel input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4CAF50;
+  border: 2px solid #388E3C;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.gripper_panel input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Firefox */
+.gripper_panel input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4CAF50;
+  border: 2px solid #388E3C;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.gripper_panel input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Текущее положение */
+.gripper_panel .value {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+.gripper_panel .value span {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
